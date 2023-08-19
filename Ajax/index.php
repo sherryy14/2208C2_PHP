@@ -146,6 +146,7 @@
                     })
                     $("#form").trigger('reset');
 
+                    render()
                 } else {
                     alert("Please insert data")
                 }
