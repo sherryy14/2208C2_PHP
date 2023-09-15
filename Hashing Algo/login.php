@@ -6,14 +6,18 @@ if (isset($_SESSION['user']) && $_SESSION['user'] == true) {
     header("location:index.php");
     exit;
 }
+
 if (isset($_POST["submit"])) {
     $Uname = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
+
     $passquery = "SELECT `Password` FROM `ammar` WHERE  `Username`= '{$Uname}'";
     $passresult = mysqli_query($conn, $passquery);
     $passfetch = mysqli_fetch_assoc($passresult);
-    $query = "SELECT * FROM `ammar` where `Username`= '{$Uname}' AND `Email`= '{$email}'";
+
+    $query = "SELECT * FROM `users` where `Username`= '{$Uname}' AND `Email`= '{$email}'";
+    
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) == 1) {
         if (password_verify($password, $passfetch['Password'])) {

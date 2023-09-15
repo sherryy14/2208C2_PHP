@@ -8,7 +8,7 @@ if(isset($_POST["submit"])){
     $pass = $_POST['password'];
     $date = $_POST['bd'];
     $gender = $_POST['gender'];
-    $query="SELECT * FROM `ammar` where `Username`= '{$Uname}' OR `Email`= '{$email}' AND `password`= '{$pass}'";
+    $query="SELECT * FROM `users` where `Username`= '{$Uname}' OR `Email`= '{$email}' AND `password`= '{$pass}'";
     $result=mysqli_query($conn,$query);
     $res1=mysqli_num_rows($result);
    
@@ -18,7 +18,7 @@ if(isset($_POST["submit"])){
     </script>";
     }else{
         $blowfish = password_hash($pass, CRYPT_BLOWFISH);
-        $insertQuery="INSERT INTO `ammar` (`Name`, `Username`, `Email`, `Password`, `DateOfBirth`, `Gender`)
+        $insertQuery="INSERT INTO `users` (`Name`, `Username`, `Email`, `Password`, `DateOfBirth`, `Gender`)
          VALUES ('$name', '$Uname', '$email', '$blowfish', '$date', '$gender')";
         $insertResult=mysqli_query($conn,$insertQuery);
         if($insertResult){
